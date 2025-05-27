@@ -1,0 +1,42 @@
+<div>
+  <h2>Upload ServiceNow Excel</h2>
+  <input type="file" (change)="onFileChange($event, 'servicenow')" accept=".xlsx" />
+
+  <h2>Upload SQL Excel</h2>
+  <input type="file" (change)="onFileChange($event, 'sql')" accept=".xlsx" />
+
+  <div style="margin-top: 1em;">
+    <label>
+      <input
+        type="radio"
+        [(ngModel)]="userChoice"
+        [value]="1"
+        name="searchType"
+        (change)="onChoiceChange()"
+      /> Asset Tag
+    </label>
+    <label style="margin-left: 2em;">
+      <input
+        type="radio"
+        [(ngModel)]="userChoice"
+        [value]="2"
+        name="searchType"
+        (change)="onChoiceChange()"
+      /> Serial Number
+    </label>
+  </div>
+
+  <div style="margin-top: 1em;">
+    <input [(ngModel)]="userInput" placeholder="Enter value" />
+    <button (click)="search()">Search</button>
+  </div>
+
+  <p style="margin-top: 1em;">
+    Current choice:
+    <b>{{ userChoice === 1 ? 'Asset Tag' : 'Serial Number' }}</b>
+  </p>
+
+  <div *ngFor="let line of results">
+    <pre>{{ line }}</pre>
+  </div>
+</div>
